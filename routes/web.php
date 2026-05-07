@@ -9,6 +9,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/', function () {
+    return redirect ('/products');
+});
+
 // ✅ Dashboard now uses DashboardController@index
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
