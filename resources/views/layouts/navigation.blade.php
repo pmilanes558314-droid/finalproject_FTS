@@ -5,7 +5,7 @@
         <!-- Logo + Title -->
         <div class="flex items-center space-x-2 p-4">
             <a href="{{ route('dashboard') }}">
-                <img src="{{ asset('image/logo.png') }}" alt="Logo" class="h-10 w-10">
+                <img src="{{ asset('image/logo.png') }}" alt="Logo" style="width: 100px; height:auto;">
             </a>
             <span class="font-bold text-lg text-gray-800 dark:text-gray-200">
                 Financial Tracker
@@ -26,21 +26,9 @@
                 <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')" class="px-4 py-2">
                     {{ __('Manage Users') }}
                 </x-nav-link>
-                <x-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.*')" class="px-4 py-2">
-                    {{ __('Reports') }}
-                </x-nav-link>
             @endif
         </div>
     </div>
 
-    <!-- Logout -->
-    <div class="p-4 border-t border-gray-200 dark:border-gray-700">
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit" 
-                    class="w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-red-100 rounded">
-                {{ __('Logout') }}
-            </button>
-        </form>
-    </div>
+    
 </nav>

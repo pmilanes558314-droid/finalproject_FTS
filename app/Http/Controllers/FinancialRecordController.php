@@ -12,11 +12,9 @@ class FinancialRecordController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->role === 'admin') {
-            $records = FinancialRecord::with('user')->latest()->get();
-        } else {
-            $records = FinancialRecord::where('user_id', auth()->id())->latest()->get();
-        }
+        $records = FinancialRecord::where('user_id', auth()->id())
+            ->orderBy('record_date', 'asc')
+            ->get();
 
         return view('records.index', compact('records'));
     }
@@ -26,10 +24,6 @@ class FinancialRecordController extends Controller
      */
     public function create()
     {
-        if (auth()->user()->role === 'admin') {
-            abort(403, 'Admins cannot modify records.');
-        }
-
         return view('records.create');
     }
 
@@ -38,26 +32,23 @@ class FinancialRecordController extends Controller
      */
     public function store(Request $request)
     {
-        if (auth()->user()->role === 'admin') {
-            abort(403, 'Admins cannot modify records.');
-        }
-
         $request->validate([
-            'title' => 'required|string|max:255',   
-            'amount' => 'required|numeric',
-            'type' => 'required|string|in:income,expense', 
-            'date' => 'required|date',            
+            'type' => 'required|in:income,expense',
+            'title' => 'required|string|max:255',
+            'amount' => 'required|numeric|min:0',
+            'record_date' => 'required|date',
         ]);
 
         FinancialRecord::create([
             'user_id' => auth()->id(),
+            'type' => $request->type,
             'title' => $request->title,
             'amount' => $request->amount,
-            'type' => $request->type,
-            'created_at' => $request->date,        
+            'record_date' => $request->record_date,
         ]);
 
-        return redirect()->route('records.index')->with('success', 'Record added successfully.');
+        // ✅ Redirect after saving
+        return redirect()->route('records.index')->with('success', 'Transaction added successfully.');
     }
 
     /**
@@ -65,10 +56,6 @@ class FinancialRecordController extends Controller
      */
     public function edit(FinancialRecord $record)
     {
-        if (auth()->user()->role === 'admin') {
-            abort(403, 'Admins cannot modify records.');
-        }
-
         if ($record->user_id !== auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
@@ -81,29 +68,21 @@ class FinancialRecordController extends Controller
      */
     public function update(Request $request, FinancialRecord $record)
     {
-        if (auth()->user()->role === 'admin') {
-            abort(403, 'Admins cannot modify records.');
-        }
-
-        if ($record->user_id !== auth()->id()) {
-            abort(403, 'Unauthorized action.');
-        }
-
         $request->validate([
+            'type' => 'required|in:income,expense',
             'title' => 'required|string|max:255',
-            'amount' => 'required|numeric',
-            'type' => 'required|string|in:income,expense',
-            'date' => 'required|date',             
+            'amount' => 'required|numeric|min:0',
+            'record_date' => 'required|date',
         ]);
 
         $record->update([
+            'type' => $request->type,
             'title' => $request->title,
             'amount' => $request->amount,
-            'type' => $request->type,
-            'created_at' => $request->date,        
+            'record_date' => $request->record_date,
         ]);
 
-        return redirect()->route('records.index')->with('success', 'Record updated successfully.');
+        return redirect()->route('records.index')->with('success', 'Transaction updated successfully.');
     }
 
     /**
@@ -111,10 +90,6 @@ class FinancialRecordController extends Controller
      */
     public function destroy(FinancialRecord $record)
     {
-        if (auth()->user()->role === 'admin') {
-            abort(403, 'Admins cannot modify records.');
-        }
-
         if ($record->user_id !== auth()->id()) {
             abort(403, 'Unauthorized action.');
         }

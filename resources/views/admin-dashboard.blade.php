@@ -1,47 +1,50 @@
 <x-app-layout>
-    <div class="flex">
-        <div class="flex-1 p-8 mx-auto max-w-6xl">
-            <h2 class="text-2xl font-bold mb-6 text-center">
+    <div style="display:flex; justify-content:center; padding:2rem;">
+        <div style="flex:1; max-width:1000px; margin:0 auto;">
+
+            <h2 style="font-size:2rem; font-weight:bold; margin-bottom:1.5rem; text-align:center;">
                 Admin Dashboard
             </h2>
 
-            <p class="text-center text-gray-600 dark:text-gray-300 mb-8">
+            <p style="text-align:center; color:#555; margin-bottom:2rem;">
                 Welcome, {{ Auth::user()->name }}. You have administrator access.
             </p>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.5rem;">
                 <!-- Users Management -->
-                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded shadow text-center">
-                    <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-200">Manage Users</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">View and manage registered users.</p>
+                <div style="background:#f9f9f9; padding:1.5rem; border-radius:8px; 
+                            box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:center;">
+                    <h3 style="font-size:1.25rem; font-weight:600; color:#333;">Manage Users</h3>
+                    <p style="font-size:0.9rem; color:#666; margin:0.75rem 0 1.25rem;">
+                        View and manage registered users.
+                    </p>
                     <a href="{{ route('users.index') }}" 
-                       class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                       style="background:linear-gradient(to right, #1e88e5, #1565c0); 
+                              color:#fff; padding:0.5rem 1.25rem; border-radius:6px; 
+                              text-decoration:none; font-weight:bold; 
+                              transition:background 0.3s ease;">
                         Go to Users
                     </a>
                 </div>
 
                 <!-- Transactions Overview -->
-                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded shadow text-center">
-                    <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-200">Transactions</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Monitor all financial records.</p>
+                <div style="background:#f9f9f9; padding:1.5rem; border-radius:8px; 
+                            box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:center;">
+                    <h3 style="font-size:1.25rem; font-weight:600; color:#333;">Transactions</h3>
+                    <p style="font-size:0.9rem; color:#666; margin:0.75rem 0 1.25rem;">
+                        Monitor all financial records.
+                    </p>
                     <a href="{{ route('admin.records') }}" 
-                       class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                       style="background:linear-gradient(to right, #43a047, #2e7d32); 
+                              color:#fff; padding:0.5rem 1.25rem; border-radius:6px; 
+                              text-decoration:none; font-weight:bold; 
+                              transition:background 0.3s ease;">
                         View Records
-                    </a>
-                </div>
-
-                <!-- Reports -->
-                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded shadow text-center">
-                    <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-200">Reports</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Generate system reports.</p>
-                    <a href="{{ route('reports.index') }}" 
-                       class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
-                        View Reports
                     </a>
                 </div>
             </div>
 
-            <div class="mt-6 text-sm text-gray-500 text-center">
+            <div style="margin-top:2rem; font-size:0.9rem; color:#777; text-align:center;">
                 Last login: {{ Auth::user()->last_login_at ?? now() }}
             </div>
         </div>

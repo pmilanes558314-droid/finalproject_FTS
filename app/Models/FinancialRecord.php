@@ -11,9 +11,10 @@ class FinancialRecord extends Model
 
     protected $fillable = [
         'user_id',
+        'type',
         'title',
         'amount',
-        'type', 
+        'record_date',
     ];
 
     public function user()

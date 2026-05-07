@@ -15,7 +15,6 @@
                         <th class="p-3">Report Title</th>
                         <th class="p-3">Description</th>
                         <th class="p-3">Generated On</th>
-                        <th class="p-3">Actions</th>
                     </tr>
                 </thead>
                 <tbody>

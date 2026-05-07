@@ -6,18 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('financial_records', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('title');
+            $table->unsignedBigInteger('user_id');
+            $table->string('type');        // income or expense
+            $table->string('title');       // description
             $table->decimal('amount', 12, 2);
-            $table->enum('type', ['income', 'expense']);
+            $table->date('record_date');   // ✅ must exist
             $table->timestamps();
+
         });
     }
 
@@ -25,5 +24,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('financial_records');
     }
-
 };

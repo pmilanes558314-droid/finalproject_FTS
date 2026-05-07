@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description')->nullable();
-            $table->timestamps();
-        });
+            $table->string('title');                  // report title
+            $table->text('description')->nullable();  // optional description
 
+            // ✅ Add these two lines here
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->date('report_date');
+
+            $table->timestamps();                     // created_at & updated_at
+        });
     }
 
     /**
