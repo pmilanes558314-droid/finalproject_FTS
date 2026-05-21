@@ -29,7 +29,7 @@ RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available
 # Allow .htaccess for Laravel
 RUN printf '<Directory /var/www/html/public>\n\
     AllowOverride All\n\
-    Require all granted\n\
+    Require all granted\n\ 
 </Directory>\n' > /etc/apache2/conf-available/laravel.conf \
  && a2enconf laravel
 
@@ -52,18 +52,24 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 # Install frontend dependencies and build assets
 RUN npm install && npm run build
 
-# Fix permissions (storage dirs must exist before chown)
-RUN mkdir -p storage/framework/cache storage/framework/sessions \
-    storage/framework/views storage/app/public bootstrap/cache public/uploads \
-    && chown -R www-data:www-data storage bootstrap/cache public/uploads \
-    && chmod -R 775 storage bootstrap/cache public/uploads
+RUN php artisan config:clear \
+ && php artisan route:clear \
+ && php artisan view:clear
 
-# Copy and enable the startup script
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+# Create storage symlink
+RUN php artisan storage:link || true
+
+# Fix permissions
+RUN mkdir -p storage/framework/cache storage/framework/sessions \
+ storage/framework/views bootstrap/cache public/uploads \
+ && chown -R www-data:www-data storage bootstrap/cache public/uploads \
+ && chmod -R 775 storage bootstrap/cache public/uploads
+
+# (Optional) Run migrations
+RUN php artisan migrate --force || true
 
 # Expose port
 EXPOSE 10000
 
-# Run startup script, then Apache
-CMD ["/usr/local/bin/docker-entrypoint.sh"]
+# Start Apache
+CMD ["apache2-foreground"]
