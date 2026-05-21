@@ -9,11 +9,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', function () {
-    return redirect ('/products');
-});
 
-// ✅ Dashboard now uses DashboardController@index
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
@@ -23,10 +19,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Transactions
     Route::resource('records', FinancialRecordController::class);
 
-    // Monthly Report
     Route::get('/reports/monthly', [DashboardController::class, 'monthlyReport'])
         ->name('reports.monthly');
 });

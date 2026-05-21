@@ -8,7 +8,6 @@
         .db-greeting { font-size: 13px; color: #9ca3af; margin-bottom: 4px; }
         .db-name { font-size: 22px; font-weight: 700; color: #111827; margin: 0 0 28px; letter-spacing: -0.4px; }
 
-        /* Month Selector */
         .db-month-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
         .db-month-bar label { font-size: 13px; font-weight: 600; color: #374151; }
 
@@ -24,7 +23,6 @@
         .db-month-btn:hover { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
         .db-month-btn svg { color: #9ca3af; }
 
-        /* Picker Popup */
         .db-picker-popup {
             position: fixed;
             width: 270px;
@@ -73,7 +71,6 @@
         .db-picker-month-btn.selected { background: #3b82f6; color: #fff; border-color: #3b82f6; font-weight: 600; }
         .db-picker-month-btn:disabled { color: #d1d5db; cursor: default; }
 
-        /* Summary Cards */
         .db-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px; }
         .db-card { border-radius: 14px; padding: 20px 22px; border: 1px solid #f0f0f2; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
         .db-card-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #9ca3af; margin-bottom: 8px; display: flex; align-items: center; gap: 7px; }
@@ -86,7 +83,6 @@
         .db-card-amount.expense { color: #ef4444; }
         .db-card-amount.balance { color: #2563eb; }
 
-        /* Total Balance Banner */
         .db-total-banner { border-radius: 14px; padding: 20px 24px; margin-bottom: 28px; background: linear-gradient(135deg, #9f75e9 0%, #8044e0 100%); box-shadow: 0 4px 16px rgba(124,58,237,0.25); display: flex; align-items: center; justify-content: space-between; }
         .db-total-banner-left { display: flex; align-items: center; gap: 14px; }
         .db-total-icon { width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -94,7 +90,6 @@
         .db-total-sub { font-size: 11.5px; color: rgba(255,255,255,0.55); }
         .db-total-amount { font-family: 'DM Mono', monospace; font-size: 26px; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
 
-        /* Table */
         .db-card-wrap { background: #fff; border-radius: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 20px rgba(0,0,0,0.05); overflow: hidden; border: 1px solid #f0f0f2; }
         .db-table-header { display: flex; align-items: center; gap: 12px; padding: 20px 28px; border-bottom: 1px solid #f0f0f2; }
         .db-table-header-icon { width: 34px; height: 34px; border-radius: 10px; background: #eff6ff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -122,7 +117,6 @@
                 <input type="hidden" name="month" id="monthInput" value="{{ $selectedMonth }}">
             </form>
 
-            <!-- Month Selector -->
             <div class="db-month-bar">
                 <label>Showing data for</label>
                 <button type="button" class="db-month-btn" id="dbMonthBtn" onclick="toggleDbPicker()">
@@ -132,7 +126,6 @@
                 </button>
             </div>
 
-            <!-- Picker Popup -->
             <div class="db-picker-popup" id="dbPickerPopup">
                 <div class="db-picker-header">
                     <div class="db-picker-year-nav">
@@ -148,7 +141,6 @@
                 <div class="db-picker-months" id="dbPickerMonths"></div>
             </div>
 
-            <!-- Summary Cards -->
             <div class="db-cards">
                 <div class="db-card">
                     <div class="db-card-label"><span class="db-card-dot income"></span> Income</div>
@@ -164,7 +156,6 @@
                 </div>
             </div>
 
-            <!-- All-Time Total Balance Banner -->
             <div class="db-total-banner">
                 <div class="db-total-banner-left">
                     <div class="db-total-icon">
@@ -218,11 +209,10 @@
         const MONTHS_FULL  = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
         const TODAY_YEAR  = {{ now()->year }};
-        const TODAY_MONTH = {{ now()->month - 1 }}; // 0-indexed
+        const TODAY_MONTH = {{ now()->month - 1 }}; 
 
-        // Selected = what the controller returned (1-indexed from PHP → convert to 0-indexed)
         let dbPickerYear     = TODAY_YEAR;
-        let dbSelectedMonth  = {{ $selectedMonth }} - 1; // 0-indexed
+        let dbSelectedMonth  = {{ $selectedMonth }} - 1; 
         let dbSelectedYear   = TODAY_YEAR;
 
         function renderDbMonths() {
@@ -234,9 +224,7 @@
                 btn.className = 'db-picker-month-btn';
                 btn.textContent = m;
 
-                // Disable future months in the current year
                 const isFuture = dbPickerYear === TODAY_YEAR && i > TODAY_MONTH;
-                // Disable any month in a future year
                 const isFutureYear = dbPickerYear > TODAY_YEAR;
 
                 if (isFuture || isFutureYear) {
@@ -254,7 +242,6 @@
 
             document.getElementById('dbPickerYearLabel').textContent = dbPickerYear;
 
-            // Disable next year btn if already at current year
             document.getElementById('dbNextYear').disabled = dbPickerYear >= TODAY_YEAR;
         }
 
@@ -285,17 +272,14 @@
             dbSelectedYear  = year;
             dbSelectedMonth = monthIndex;
 
-            // Update button label
             document.getElementById('dbMonthLabel').textContent =
                 MONTHS_FULL[monthIndex] + ' ' + year;
 
-            // Submit form
             document.getElementById('monthInput').value = monthIndex + 1; // back to 1-indexed
             document.getElementById('dbPickerPopup').classList.remove('open');
             document.getElementById('monthForm').submit();
         }
 
-        // Close on outside click
         document.addEventListener('click', function(e) {
             const popup = document.getElementById('dbPickerPopup');
             const btn   = document.getElementById('dbMonthBtn');

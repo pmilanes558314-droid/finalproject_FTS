@@ -5,10 +5,8 @@
         .mn-wrap { display: flex; justify-content: center; margin-top: 40px; padding: 0 16px 48px; }
         .mn-inner { width: 100%; max-width: 1000px; }
 
-        /* Header */
         .mn-page-title { font-size: 20px; font-weight: 700; color: #111827; margin: 0 0 24px; letter-spacing: -0.3px; }
 
-        /* Chart Card */
         .mn-chart-card { background: #fff; border-radius: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #f0f0f2; overflow: hidden; margin-bottom: 24px; }
         .mn-card-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 28px; border-bottom: 1px solid #f0f0f2; }
         .mn-card-header-left { display: flex; align-items: center; gap: 12px; }
@@ -21,10 +19,8 @@
         .mn-legend-dot.expense { background: #ef4444; }
         .mn-chart-body { padding: 24px 28px; }
 
-        /* Highlight Banner */
         .mn-highlight { display: flex; align-items: center; gap: 10px; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 10px; padding: 12px 18px; margin-bottom: 20px; font-size: 13px; color: #92400e; font-weight: 500; }
 
-        /* Table Card */
         .mn-table-card { background: #fff; border-radius: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #f0f0f2; overflow: hidden; }
         .mn-table { width: 100%; border-collapse: collapse; }
         .mn-table thead tr { background: #fafafa; }
@@ -59,7 +55,6 @@
                 }
             @endphp
 
-            <!-- Chart Card -->
             <div class="mn-chart-card">
                 <div class="mn-card-header">
                     <div class="mn-card-header-left">
@@ -78,7 +73,6 @@
                 </div>
             </div>
 
-            <!-- Highest Expense Highlight -->
             @if($highestExpenseMonth && $highestExpenseVal > 0)
                 <div class="mn-highlight">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
@@ -86,7 +80,6 @@
                 </div>
             @endif
 
-            <!-- Table -->
             <div class="mn-table-card">
                 <div class="mn-card-header">
                     <div class="mn-card-header-left">

@@ -23,7 +23,6 @@
             overflow: hidden;
         }
 
-        /* Soft background shapes */
         .bg-circle {
             position: fixed; border-radius: 50%;
             pointer-events: none; z-index: 0;
@@ -31,7 +30,6 @@
         .bg-circle-1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(99,102,241,0.12), transparent 70%); top: -200px; right: -150px; }
         .bg-circle-2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(16,185,129,0.08), transparent 70%); bottom: -150px; left: -100px; }
 
-        /* Card */
         .gl-card {
             position: relative; z-index: 1;
             width: 100%; max-width: 460px;
@@ -41,7 +39,6 @@
             overflow: hidden;
         }
 
-        /* Top accent bar */
         .gl-card-top {
             height: 5px;
             background: linear-gradient(90deg, #6366f1, #8b5cf6, #06b6d4);
@@ -49,7 +46,6 @@
 
         .gl-card-body { padding: 40px; }
 
-        /* Logo */
         .gl-logo {
             display: flex; align-items: center; gap: 10px;
             text-decoration: none; margin-bottom: 32px;
@@ -57,11 +53,9 @@
         .gl-logo img { width: 30px; height: 30px; object-fit: contain; }
         .gl-logo-name { font-size: 14px; font-weight: 700; color: #111827; }
 
-        /* Title */
         .gl-title { font-size: 24px; font-weight: 800; color: #111827; letter-spacing: -0.5px; margin-bottom: 6px; }
         .gl-sub { font-size: 13.5px; color: #9ca3af; margin-bottom: 28px; }
 
-        /* Form groups */
         .gl-group { margin-bottom: 16px; }
 
         .gl-group label {
@@ -94,7 +88,6 @@
 
         .gl-error { font-size: 12px; color: #ef4444; margin-top: 5px; }
 
-        /* Remember row */
         .gl-remember {
             display: flex; align-items: center; gap: 8px;
             margin-bottom: 22px;
@@ -105,7 +98,6 @@
         }
         .gl-remember span { font-size: 13px; color: #6b7280; }
 
-        /* Forgot link row */
         .gl-label-row {
             display: flex; align-items: center; justify-content: space-between;
             margin-bottom: 6px;
@@ -114,7 +106,6 @@
         .gl-forgot { font-size: 12px; color: #6366f1; font-weight: 600; text-decoration: none; }
         .gl-forgot:hover { text-decoration: underline; }
 
-        /* Submit button */
         .gl-btn {
             width: 100%; padding: 12px 0;
             background: linear-gradient(135deg, #6366f1, #8b5cf6);
@@ -127,7 +118,6 @@
         }
         .gl-btn:hover { opacity: 0.92; transform: translateY(-1px); }
 
-        /* Bottom link */
         .gl-bottom {
             text-align: center; margin-top: 20px;
             font-size: 13px; color: #9ca3af;
@@ -135,7 +125,6 @@
         .gl-bottom a { color: #6366f1; font-weight: 600; text-decoration: none; }
         .gl-bottom a:hover { text-decoration: underline; }
 
-        /* Divider */
         .gl-divider {
             display: flex; align-items: center; gap: 12px;
             margin: 20px 0;
@@ -143,7 +132,6 @@
         .gl-divider-line { flex: 1; height: 1px; background: #f0f0f2; }
         .gl-divider-text { font-size: 11.5px; color: #d1d5db; font-weight: 500; }
 
-        /* 2-col grid for name + email on register */
         .gl-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     </style>
 </head>

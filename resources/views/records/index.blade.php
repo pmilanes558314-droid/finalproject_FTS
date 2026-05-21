@@ -9,7 +9,6 @@
         .tx-header { display: flex; align-items: center; gap: 12px; padding: 22px 32px; border-bottom: 1px solid #f0f0f2; }
         .tx-header h2 { font-size: 15px; font-weight: 600; color: #111827; margin: 0; letter-spacing: -0.2px; flex: 1; }
 
-        /* Clickable icon button */
         .tx-header-icon-btn {
             width: 36px; height: 36px; border-radius: 10px; background: #eff6ff;
             display: flex; align-items: center; justify-content: center; flex-shrink: 0;
@@ -20,7 +19,6 @@
         .tx-header-icon-btn.active { background: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.2); }
         .tx-header-icon-btn.active svg { stroke: #fff; }
 
-        /* Filter label shown next to title when active */
         .tx-filter-badge {
             display: none;
             align-items: center;
@@ -43,7 +41,6 @@
         }
         .tx-filter-badge-close:hover { color: #2563eb; }
 
-        /* Month-Year Picker Popup */
         .picker-popup {
             position: fixed;
             top: calc(100% + 10px);
@@ -134,7 +131,6 @@
         .picker-month-btn:hover { background: #f5f5f7; }
         .picker-month-btn.selected { background: #3b82f6; color: #fff; border-color: #3b82f6; font-weight: 600; }
 
-        /* rest of styles unchanged */
         .tx-alert { margin: 16px 24px 0; display: flex; align-items: center; gap: 8px; padding: 11px 16px; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 10px; font-size: 13px; font-weight: 500; color: #065f46; }
 
         .tx-table { width: 100%; border-collapse: collapse; }
@@ -336,9 +332,8 @@
 
         let pickerYear = new Date().getFullYear();
         let selectedYear = null;
-        let selectedMonth = null; // 0-indexed
+        let selectedMonth = null; 
 
-        // Build month buttons
         function renderMonths() {
             const container = document.getElementById('pickerMonths');
             container.innerHTML = '';

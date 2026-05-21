@@ -11,7 +11,6 @@
             </p>
 
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.5rem;">
-                <!-- Users Management -->
                 <div style="background:#f9f9f9; padding:1.5rem; border-radius:8px; 
                             box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:center;">
                     <h3 style="font-size:1.25rem; font-weight:600; color:#333;">Manage Users</h3>
@@ -27,7 +26,6 @@
                     </a>
                 </div>
 
-                <!-- Transactions Overview -->
                 <div style="background:#f9f9f9; padding:1.5rem; border-radius:8px; 
                             box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:center;">
                     <h3 style="font-size:1.25rem; font-weight:600; color:#333;">Transactions</h3>

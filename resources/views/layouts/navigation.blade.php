@@ -2,7 +2,6 @@
      class="bg-white dark:bg-gray-800 border-r border-gray-100 dark:border-gray-700 w-80 h-screen flex flex-col justify-between relative">
 
     <div class="flex flex-col flex-grow">
-        <!-- Logo + Title -->
         <div class="flex items-center space-x-2 p-4">
             <a href="{{ route('dashboard') }}">
                 <img src="{{ asset('image/logo.png') }}" alt="Logo" style="width: 100px; height:auto;">
@@ -12,7 +11,6 @@
             </span>
         </div>
 
-        <!-- Navigation Links -->
         <div class="flex flex-col space-y-6 px-6 mt-8">
             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="px-4 py-2">
                 {{ __('Dashboard') }}
